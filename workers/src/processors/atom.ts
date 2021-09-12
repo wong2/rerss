@@ -27,12 +27,12 @@ function transform(data: AtomData): {
   feed.title = `rerss - ${getTextValue(feed.title).trim()}`
 
   feed.entry.forEach((entry) => {
-    const pubDate = dayjs(entry.published)
+    const pubDate = dayjs(entry.published || entry.updated)
     entry.title = `(${pubDate.year()}) ${getTextValue(entry.title).trim()}`
     const nextDate = calcNextDate(now, pubDate)
     entry.scheduledAt = nextDate.toDate()
   })
-  feed.entry.sort((a, b) => b.scheduledAt.getTime() - a.scheduledAt.getTime())
+  feed.entry.sort((a, b) => a.scheduledAt.getTime() - b.scheduledAt.getTime())
 
   const upcomming = feed.entry.slice(0, 3).map((entry) => {
     return {
