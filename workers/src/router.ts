@@ -56,8 +56,9 @@ router.post('/create', async (request) => {
   })
 })
 
-router.get('/f/:id', async ({ params }: { params: { id: string } }) => {
-  const id = params.id
+router.get('/f/:id', async (request) => {
+  const id = request.params!.id
+  const date = request.query?.date
 
   const feed = await model.getFeed(id)
   if (!feed) {
@@ -65,7 +66,7 @@ router.get('/f/:id', async ({ params }: { params: { id: string } }) => {
   }
 
   const processor = feedTypeProcessorMap[feed.type]
-  const data = processor.generate(feed.jsonData as any, dayjs())
+  const data = processor.generate(feed.jsonData as any, dayjs(date))
 
   const xml = builder.parse(data)
   return new Response(xml, {
