@@ -16,7 +16,7 @@ function Result({ id, upcomming }) {
     <div class="mt-6">
       <h5>Subscribe to the following feed</h5>
       <samp>
-        <a href={url} target="_blank" class="break-words	">
+        <a href={url} target="_blank" class="break-words">
           {url}
         </a>
       </samp>
