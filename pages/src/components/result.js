@@ -14,9 +14,9 @@ function Result({ id, upcomming }) {
 
   return (
     <div class="mt-6">
-      <h5>Subscribe to the following feed with your RSS reader</h5>
+      <h5>Subscribe to the following feed</h5>
       <samp>
-        <a href={url} target="_blank">
+        <a href={url} target="_blank" class="break-words	">
           {url}
         </a>
       </samp>
