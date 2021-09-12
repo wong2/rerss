@@ -1,0 +1,14 @@
+name = "rerss"
+type = "javascript"
+zone_id = ""
+account_id = "e04a67e95be4272da401c446d1522943"
+route = ""
+workers_dev = true
+kv_namespaces = [ 
+  { binding = "KV", id = "f3c32db083b0497ea402a2a25def3710", preview_id = "f3c32db083b0497ea402a2a25def3710" }
+]
+
+[build]
+command = "npm install && npm run build"
+[build.upload]
+format = "service-worker"
