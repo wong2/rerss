@@ -24,11 +24,11 @@ function transform(data: AtomData): {
   const now = dayjs()
   const feed = data.feed
 
-  feed.title = `rerss - ${getTextValue(feed.title).trim()}`
+  feed.title = `rerss - ${getTextValue(feed.title)}`
 
   feed.entry.forEach((entry) => {
     const pubDate = dayjs(entry.published || entry.updated)
-    entry.title = `(${pubDate.year()}) ${getTextValue(entry.title).trim()}`
+    entry.title = `(${pubDate.year()}) ${getTextValue(entry.title)}`
     const nextDate = calcNextDate(now, pubDate)
     entry.scheduledAt = nextDate.toDate()
   })

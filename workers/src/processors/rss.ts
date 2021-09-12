@@ -24,10 +24,10 @@ function transform(data: RSSData): {
 } {
   const now = dayjs()
   const channel = data.rss.channel
-  channel.title = `rerss - ${getTextValue(channel.title).trim()}`
+  channel.title = `rerss - ${getTextValue(channel.title)}`
   channel.item.forEach((item) => {
     const pubDate = dayjs(item.pubDate)
-    item.title = `(${pubDate.year()}) ${getTextValue(item.title).trim()}`
+    item.title = `(${pubDate.year()}) ${getTextValue(item.title)}`
     const nextDate = calcNextDate(now, pubDate)
     item.scheduledAt = nextDate.toDate()
   })

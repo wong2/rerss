@@ -1,12 +1,13 @@
 import { Router } from 'itty-router'
 import parser, { j2xParser } from 'fast-xml-parser'
 import dayjs from 'dayjs'
-import { decode } from 'html-entities'
+import he from 'he'
 import { FeedType, feedTypeProcessorMap } from './consts'
 import * as model from './model'
 
 const builder = new j2xParser({
   ignoreAttributes: false,
+  cdataTagName: '#cdata',
 })
 
 const router = Router()
@@ -22,6 +23,7 @@ router.post('/create', async (request) => {
   const data = parser.parse(xml, {
     ignoreAttributes: false,
     parseNodeValue: false,
+    cdataTagName: '#cdata',
   })
 
   let feedType: FeedType
@@ -42,7 +44,7 @@ router.post('/create', async (request) => {
     id,
     upcomming: upcomming.map((item) => {
       return {
-        title: decode(item.title),
+        title: he.decode(item.title),
         date: dayjs(item.scheduledAt).format('YYYY-MM-DD'),
       }
     }),
