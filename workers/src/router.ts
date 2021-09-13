@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { Router } from 'itty-router'
 import parser, { j2xParser } from 'fast-xml-parser'
 import dayjs from 'dayjs'
@@ -9,6 +10,15 @@ const builder = new j2xParser({
   ignoreAttributes: false,
   cdataTagName: '#cdata',
 })
+
+function jsonResponse(data: any) {
+  return new Response(JSON.stringify(data), {
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    },
+  })
+}
 
 const router = Router()
 
@@ -36,26 +46,18 @@ router.post('/create', async (request) => {
   }
 
   const processor = feedTypeProcessorMap[feedType]
-  const { data: jsonData, upcomming } = processor.transform(data)
+  const { data: jsonData, items } = processor.transform(data)
 
   const id = await model.createFeed(source, feedType, jsonData)
 
-  const resp = {
-    id,
-    upcomming: upcomming.map((item) => {
-      return {
-        title: he.decode(item.title),
-        date: dayjs(item.scheduledAt).format('YYYY-MM-DD'),
-      }
-    }),
-  }
+  const upcomming = _.sortBy(items, (item) => item.scheduledAt)
+    .slice(0, 5)
+    .map((item) => ({
+      title: he.decode(item.title),
+      date: dayjs(item.scheduledAt).format('YYYY-MM-DD'),
+    }))
 
-  return new Response(JSON.stringify(resp), {
-    headers: {
-      'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
-    },
-  })
+  return jsonResponse({ id, upcomming })
 })
 
 router.get('/f/:id', async (request) => {

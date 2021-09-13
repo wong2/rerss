@@ -17,7 +17,7 @@ interface RSSData {
 
 function transform(data: RSSData): {
   data: RSSData
-  upcomming: {
+  items: {
     title: string
     scheduledAt: Date
   }[]
@@ -31,17 +31,16 @@ function transform(data: RSSData): {
     const nextDate = calcNextDate(now, pubDate)
     item.scheduledAt = nextDate.toDate()
   })
-  channel.item.sort((a, b) => a.scheduledAt.getTime() - b.scheduledAt.getTime())
+  channel.item.sort((a, b) => b.scheduledAt.getTime() - a.scheduledAt.getTime())
 
-  const upcomming = channel.item.slice(0, 3).map((item) => {
+  const items = channel.item.map((item) => {
     return {
       title: item.title,
       scheduledAt: item.scheduledAt,
     }
   })
 
-  channel.item.reverse()
-  return { data, upcomming }
+  return { data, items }
 }
 
 function generate(data: RSSData, maxDate: dayjs.Dayjs): RSSData {

@@ -16,7 +16,7 @@ interface AtomData {
 
 function transform(data: AtomData): {
   data: AtomData
-  upcomming: {
+  items: {
     title: string
     scheduledAt: Date
   }[]
@@ -32,18 +32,16 @@ function transform(data: AtomData): {
     const nextDate = calcNextDate(now, pubDate)
     entry.scheduledAt = nextDate.toDate()
   })
-  feed.entry.sort((a, b) => a.scheduledAt.getTime() - b.scheduledAt.getTime())
+  feed.entry.sort((a, b) => b.scheduledAt.getTime() - a.scheduledAt.getTime())
 
-  const upcomming = feed.entry.slice(0, 3).map((entry) => {
+  const items = feed.entry.map((entry) => {
     return {
       title: entry.title,
       scheduledAt: entry.scheduledAt,
     }
   })
 
-  feed.entry.reverse()
-
-  return { data, upcomming }
+  return { data, items }
 }
 
 function generate(data: AtomData, maxDate: dayjs.Dayjs): AtomData {
