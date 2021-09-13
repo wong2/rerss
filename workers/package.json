@@ -42,6 +42,7 @@
     "fast-xml-parser": "^3.20.0",
     "he": "^1.2.0",
     "itty-router": "^2.4.2",
-    "nanoid": "^3.1.25"
+    "nanoid": "^3.1.25",
+    "toucan-js": "^2.5.0"
   }
 }

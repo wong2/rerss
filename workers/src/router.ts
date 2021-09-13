@@ -32,7 +32,7 @@ router.post('/create', async (request) => {
   } else if (data.rss) {
     feedType = FeedType.RSS
   } else {
-    throw new Error('Unknown feed type')
+    throw new Error(`Unknown feed type: ${source}`)
   }
 
   const processor = feedTypeProcessorMap[feedType]
