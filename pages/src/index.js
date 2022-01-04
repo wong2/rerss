@@ -5,7 +5,7 @@ import "./global.css";
 import Home from "./routes/home";
 
 const App = () => (
-  <div id="app" className="w-full h-full bg-base-200">
+  <div id="app" className="w-full h-full">
     <Router>
       <Home path="/" />
     </Router>
