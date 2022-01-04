@@ -16,7 +16,7 @@ function Result({ id, upcomming }) {
     <div class="my-8 px-2">
       <div class="card card-compact sm:card-normal shadow">
         <div class="card-body">
-          <h2 class="card-title">Subscribe to the following feed</h2>
+          <h2 class="card-title">Subscribe</h2>
           <div>
             <p>
               <samp>{url}</samp>
