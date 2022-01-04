@@ -28,15 +28,15 @@
     "preact-cli": "^3.0.0",
     "preact-cli-postcss": "^1.1.1",
     "sirv-cli": "1.0.3",
-    "tailwindcss": "^2.2.15"
+    "tailwindcss": "^3.0.9"
   },
   "dependencies": {
     "classnames": "^2.3.1",
+    "daisyui": "^1.21.0",
     "preact": "^10.3.2",
     "preact-render-to-string": "^5.1.4",
     "preact-router": "^3.2.1",
-    "react-copy-to-clipboard": "^5.0.4",
-    "spectre.css": "^0.5.9"
+    "react-copy-to-clipboard": "^5.0.4"
   },
   "jest": {
     "preset": "jest-preset-preact",

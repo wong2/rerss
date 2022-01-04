@@ -13,24 +13,32 @@ function Result({ id, upcomming }) {
   }, []);
 
   return (
-    <div class="mt-6">
-      <h5>Subscribe to the following feed</h5>
-      <samp>
-        <a href={url} target="_blank" class="break-words">
-          {url}
-        </a>
-      </samp>
-      <CopyToClipboard text={url} onCopy={onCopy}>
-        <button class="btn btn-sm ml-3">{copied ? "Copied" : "Copy"}</button>
-      </CopyToClipboard>
-      <h5 class="mt-3">Upcomming updates preview</h5>
-      <div>
-        {upcomming.map((item) => (
-          <div class="mt-2">
-            <span class="label label-rounded">{item.date}</span>
-            <span class="ml-2">{item.title}</span>
+    <div class="mt-8">
+      <div class="card shadow">
+        <div class="card-body">
+          <h2 class="card-title">Subscribe to the following feed</h2>
+          <div>
+            <p>
+              <samp>
+                <a href={url} target="_blank" class="break-words" rel="noreferrer">
+                  {url}
+                </a>
+              </samp>
+              <CopyToClipboard text={url} onCopy={onCopy}>
+                <button type="button" class="btn btn-xs ml-3">
+                  {copied ? "Copied" : "Copy"}
+                </button>
+              </CopyToClipboard>
+            </p>
+            <h2 class="card-title mt-5">Upcomming updates preview</h2>
+            {upcomming.map((item) => (
+              <div key={item.title} class="mt-2">
+                <span class="block badge badge-outline mr-2 mb-1 sm:inline">{item.date}</span>
+                <span>{item.title}</span>
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     </div>
   );
