@@ -26,7 +26,7 @@ function Result({ id, upcomming }) {
                 </button>
               </CopyToClipboard>
             </p>
-            <h2 class="card-title mt-5">Upcomming updates preview</h2>
+            <h2 class="card-title mt-5">Upcoming updates preview</h2>
             {upcomming.map((item) => (
               <div key={item.title} class="mt-2">
                 <span class="block badge badge-outline mr-2 mb-1 sm:inline">{item.date}</span>
