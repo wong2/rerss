@@ -8,7 +8,7 @@ function Examples(props) {
   }, [props]);
 
   return (
-    <div class="self-start mt-5 text-gray-500 text-sm">
+    <div class="self-start px-5 mt-5 text-gray-500 text-sm">
       <span class="">Or try with </span>
       <a class="link" onClick={onClick}>
         {examples[0].title}

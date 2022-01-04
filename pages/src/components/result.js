@@ -13,19 +13,15 @@ function Result({ id, upcomming }) {
   }, []);
 
   return (
-    <div class="mt-8">
-      <div class="card shadow">
+    <div class="my-8 px-2">
+      <div class="card card-compact sm:card-normal shadow">
         <div class="card-body">
           <h2 class="card-title">Subscribe to the following feed</h2>
           <div>
             <p>
-              <samp>
-                <a href={url} target="_blank" class="break-words" rel="noreferrer">
-                  {url}
-                </a>
-              </samp>
+              <samp>{url}</samp>
               <CopyToClipboard text={url} onCopy={onCopy}>
-                <button type="button" class="btn btn-xs ml-3">
+                <button type="button" class="btn btn-xs ml-2">
                   {copied ? "Copied" : "Copy"}
                 </button>
               </CopyToClipboard>

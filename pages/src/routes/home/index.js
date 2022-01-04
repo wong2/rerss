@@ -41,14 +41,14 @@ const Home = () => {
   }, []);
 
   return (
-    <div class="h-full flex justify-center items-center">
+    <div class="min-h-screen flex justify-center items-center">
       <div class="container flex flex-col items-center">
         <h1 class="mb-5 text-5xl font-bold">rerss</h1>
         <p class="mb-5 text-lg">
           Receive <del>new</del> old updates from RSS feed
         </p>
-        <form onSubmit={onSubmit} class="w-full p-5 max-w-2xl">
-          <div class="form-control mt-5">
+        <form onSubmit={onSubmit} class="w-full max-w-2xl">
+          <div class="form-control mt-5 px-5">
             <div class="relative">
               <input
                 type="text"
@@ -67,12 +67,12 @@ const Home = () => {
                 Convert
               </button>
             </div>
+            {error && (
+              <label class="label">
+                <span class="label-text-alt text-red-400">{error}</span>
+              </label>
+            )}
           </div>
-          {error && (
-            <label class="label">
-              <span class="label-text-alt text-red-400">{error}</span>
-            </label>
-          )}
           {result ? <Result {...result} /> : <Examples onClick={onExampleClicked} />}
         </form>
       </div>
